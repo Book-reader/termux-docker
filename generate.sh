@@ -443,7 +443,7 @@ find -L "${TERMUX_DOCKER__ROOTFS}/system" \
 echo "[*] Rootfs generation complete. Building termux-docker image..."
 $SUDO $OCI ${OCI_ARG} \
 	--no-cache \
-	-t "${TERMUX_DOCKER__IMAGE_NAME}:${TERMUX_ARCH}" \
+	-t "ghcr.io/${TERMUX_DOCKER__IMAGE_NAME}:${TERMUX_ARCH}" \
 	${PLATFORM_ARG} \
 	--build-arg TERMUX_DOCKER__ROOTFS="$(basename "${TERMUX_DOCKER__ROOTFS}")" \
 	--build-arg TERMUX__PREFIX="${TERMUX__PREFIX}" \
@@ -452,7 +452,7 @@ $SUDO $OCI ${OCI_ARG} \
 	.
 
 if [ "${1-}" = "publish" ]; then
-	$SUDO $OCI push "${TERMUX_DOCKER__IMAGE_NAME}:${TERMUX_ARCH}"
+	$SUDO $OCI push "ghcr.io/${TERMUX_DOCKER__IMAGE_NAME}:${TERMUX_ARCH}"
 fi
 
 if [ "${TERMUX_ARCH}" = "x86_64" ]; then
