@@ -51,7 +51,7 @@ fi
 : "${TERMUX_PACKAGE_MANAGER:="apt"}"
 case "${TERMUX_PACKAGE_MANAGER}" in
 	apt)
-		TERMUX_DOCKER__IMAGE_NAME="termux/termux-docker"
+		TERMUX_DOCKER__IMAGE_NAME="book-reader/termux"
 		TERMUX_DOCKER__BOOTSTRAP_VERSION="2023.02.19-r1%2Bapt-android-7"
 		TERMUX_DOCKER__BOOTSTRAP_SRCURL="https://github.com/termux/termux-packages/releases/download/bootstrap-${TERMUX_DOCKER__BOOTSTRAP_VERSION}/bootstrap-${TERMUX_ARCH}.zip"
 		declare -A REPO_BASE_URLS=(
