@@ -57,23 +57,4 @@ jobs:
 
     - name: Push to Docker Hub
       run: |
-        docker push ghcr.io/book-reader/termux:${{ env.TERMUX_ARCH }}
-
-    - name: Export container as tar archive
-      if: always()
-      run: |
-        docker run \
-          --name termux-docker-${{ env.TERMUX_PACKAGE_MANAGER }}-${{ env.TERMUX_ARCH }} \
-          ${{ env.TERMUX_DOCKER__IMAGE_NAME }}:${{ env.TERMUX_ARCH }} \
-          uname -a
-        docker stop termux-docker-${{ env.TERMUX_PACKAGE_MANAGER }}-${{ env.TERMUX_ARCH }}
-        docker export -o termux-docker-${{ env.TERMUX_PACKAGE_MANAGER }}-${{ env.TERMUX_ARCH }}.tar \
-          termux-docker-${{ env.TERMUX_PACKAGE_MANAGER }}-${{ env.TERMUX_ARCH }}
-        sha256sum termux-docker-${{ env.TERMUX_PACKAGE_MANAGER }}-${{ env.TERMUX_ARCH }}.tar
-
-    - name: Store tar archive
-      if: always()
-      uses: actions/upload-artifact@v5
-      with:
-        name: termux-docker-${{ env.TERMUX_PACKAGE_MANAGER }}-${{ env.TERMUX_ARCH }}-${{ github.sha }}
-        path: termux-docker-${{ env.TERMUX_PACKAGE_MANAGER }}-${{ env.TERMUX_ARCH }}.tar
+        docker push ghcr.io/book-reader/termux:${{ matrix.architecture }}
