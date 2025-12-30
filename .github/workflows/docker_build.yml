@@ -57,7 +57,7 @@ jobs:
 
     - name: Push to Docker Hub
       run: |
-        docker push ghcr.io/Book-reader/termux:${{ env.TERMUX_ARCH }}
+        docker push ghcr.io/book-reader/termux:${{ env.TERMUX_ARCH }}
 
     - name: Export container as tar archive
       if: always()
